@@ -1,4 +1,8 @@
-"""Prefetch Franka Panda from mujoco-menagerie into the per-user cache."""
+"""Prefetch Franka Panda from mujoco-menagerie into the per-user cache.
+
+Run ``python -m assets.panda`` once after installing.
+"""
+
 import mujoco_menagerie as mm
 
 ROBOT = "franka_emika_panda"

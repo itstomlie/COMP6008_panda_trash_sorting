@@ -5,18 +5,19 @@ import xml.etree.ElementTree as ET
 
 import numpy as np
 
-from meshes import can_mesh, crumpled_paper_mesh
-from setup_assets import panda_path
+from assets.meshes import can_mesh, crumpled_paper_mesh
+from assets.panda import panda_path
 
 CLASS_NAMES = ("can", "bottle", "paper")
 
 # Bin centres. Bin i takes class i. Each bin is 20 cm square inside, rim at z=0.14.
 BIN_XY = np.array([[0.57, -0.40], [0.70, 0.0], [0.57, 0.40]])
 BIN_COLORS = ("0.85 0.3 0.2 1", "0.2 0.5 0.85 1", "0.3 0.7 0.35 1")
+
 # Drop target: 10 cm above the correct bin's rim.
 DROP_HEIGHT = 0.24
 
-# Object sizes, used by the shapes below and by scripted_sort.
+# Object sizes, used by the shapes below and by examples/scripted_sort.
 OBJECT_RADIUS = np.array([0.03, 0.025, 0.025])
 OBJECT_HEIGHT = np.array([0.12, 0.14, 0.062])
 OBJECT_FRICTION = np.array([0.7, 0.6, 1.0])
@@ -32,6 +33,9 @@ BIN_PARTS = (
     ("back", "0.105 0 0.08", "0.005 0.1 0.06"),
     ("front", "-0.105 0 0.08", "0.005 0.1 0.06"),
 )
+# Must match BIN_PARTS: inner half-width and wall-top height.
+BIN_HALF = 0.10
+BIN_RIM = 0.14
 
 # Origin is each object's bottom. Geoms with contype="0" conaffinity="0" mass="0" are visual only.
 # Group 3 is hidden in the viewer, so those geoms collide but you see the mesh instead.
